@@ -1,8 +1,9 @@
 torch
 transformers
 accelerate
-gradio 
-datasets 
-# symusic # Keep commented if not actively used by UI yet
-# bitsandbytes # Keep commented for now, will add if decide to use quantization
-# peft # Keep commented for now, will add if decide to use LoRA
+gradio
+datasets
+bitsandbytes
+peft
+tensorboard 
+# symusic

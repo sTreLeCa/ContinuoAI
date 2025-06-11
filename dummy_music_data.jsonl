@@ -1,0 +1,2 @@
+{"prompt": "Human: Complete this tune: X:1 K:C C D E F | G A B c</s> Assistant: ", "completion": "d e f g | a b c2 |"}
+{"prompt": "Human: Continue this melody: X:1 K:G G2 A2 | B2 c2</s> Assistant: ", "completion": "d2 e2 | f2 g2 | a4"}
