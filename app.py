@@ -3,28 +3,24 @@ import sys
 
 # Ensure the llm_module can be found
 if '.' not in sys.path:
-    sys.path.append('.') # Adds the current directory to the path
+    sys.path.append('.')
 
-# This import will trigger the global model loading in inference_engine.py
-# (or use the already loaded model if inference_engine.py was run previously)
+# This import will use the already loaded MODEL and TOKENIZER
+# from the inference_engine module
 from llm_module.inference_engine import generate_music_continuation as llm_generate_continuation
-# from llm_module.inference_engine import MODEL_LOAD_ERROR # Optional: to check loading status
 
-print("app.py: Imports loaded. LLM model and tokenizer should be loading/loaded.")
+print("app.py: Imports loaded. LLM model and tokenizer should be loaded.")
 
 def generate_for_gradio(abc_start_text):
     print(f"Gradio received for generation: {abc_start_text}")
     if not abc_start_text or abc_start_text.strip() == "":
         return "Please enter some ABC music to start."
 
-    # Construct the full prompt format
     prompt = f"""Human: Here is the beginning of a musical piece. Please continue it in a coherent style:
 {abc_start_text}</s> Assistant: """
 
     print(f"Gradio constructed prompt (first 100 chars): {prompt[:100]}")
-
     continuation = llm_generate_continuation(prompt)
-
     print(f"Gradio received continuation from LLM: {continuation}")
     return continuation
 
