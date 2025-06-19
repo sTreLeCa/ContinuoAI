@@ -1,5 +1,3 @@
-# llm_module/inference_engine.py
-
 import torch
 from transformers import (
     AutoTokenizer,
@@ -16,10 +14,7 @@ print("inference_engine.py: Top-level imports loaded.")
 def load_model_for_inference(
     base_model_name="m-a-p/ChatMusician",
     adapter_path=None,
-    use_quantization_for_base_model_inference=False # Default to False for higher quality base inference
-                                                    # Set to True if VRAM is extremely tight even for inference,
-                                                    # or if adapters were trained on a quantized base
-                                                    # and you want max consistency.
+    use_quantization_for_base_model_inference=False
 ):
     """Loads the base model and optionally applies PEFT LoRA adapters for inference."""
     print(f"INFER: Loading model. Base: {base_model_name}, Adapters: {adapter_path}")
@@ -41,7 +36,7 @@ def load_model_for_inference(
             base_model_name,
             quantization_config=bnb_config_inference,
             torch_dtype=torch.float16 if not use_quantization_for_base_model_inference and bnb_config_inference is None else None,
-            device_map="auto",
+            device_map="auto", # Ensures model is placed on GPU if possible
             trust_remote_code=True,
             # Do NOT call .eval() yet if we are applying adapters, PeftModel will handle it.
         )
@@ -52,24 +47,17 @@ def load_model_for_inference(
         raise
 
     model_to_use = base_model
-    if adapter_path and os.path.exists(adapter_path): # Check if path exists
+    if adapter_path and os.path.isdir(adapter_path): # Check if adapter_path is a valid directory
         print(f"INFER: Attempting to load LoRA adapters from {adapter_path}...")
         try:
-            # Ensure the base model is not in .eval() mode if it was set before PeftModel loads
-            if hasattr(base_model, 'training'): # Check if it's a PreTrainedModel instance
-                 base_model.train(False) # Set to eval mode temporarily if it's not done by PeftModel
-                                         # Actually, PeftModel expects the base model NOT to be in .eval() during loading.
-                                         # So, we ensure it's not in eval() mode before PeftModel.from_pretrained
-            
-            # If the base model was quantized, PEFT needs to be aware.
-            # For QLoRA, the base model IS quantized.
+            # When loading a PEFT model, the base model should ideally not be in .eval() mode yet.
+            # PeftModel.from_pretrained will handle setting the correct mode.
+            # If base_model was quantized, PEFT handles it.
             model_to_use = PeftModel.from_pretrained(base_model, adapter_path)
             print("INFER: LoRA adapters loaded successfully onto base model.")
             
-            # Optional: Merge adapters for faster inference if VRAM allows.
-            # This creates a new model with merged weights and unloads PEFT wrappers.
-            # After merging, the model behaves like a standard Hugging Face model.
-            # Consider making this a configurable option.
+            # Optional: Merge adapters for potentially faster inference.
+            # This replaces the LoRA layers with their merged equivalents.
             # print("INFER: Merging LoRA adapters into the base model for optimized inference...")
             # model_to_use = model_to_use.merge_and_unload()
             # print("INFER: Adapters merged and PEFT model unloaded.")
@@ -79,8 +67,8 @@ def load_model_for_inference(
             print("INFER: Will proceed with the base model only.")
             traceback.print_exc()
             # model_to_use remains base_model
-    elif adapter_path: # Path provided but does not exist
-        print(f"INFER: WARNING - Adapter path '{adapter_path}' provided but not found. Using base model.")
+    elif adapter_path: # Path provided but does not exist or is not a directory
+        print(f"INFER: WARNING - Adapter path '{adapter_path}' provided but not found or not a directory. Using base model.")
     else:
         print("INFER: No adapter path provided, using base model.")
     
@@ -89,13 +77,13 @@ def load_model_for_inference(
 
     print(f"INFER: Attempting to load tokenizer for {base_model_name}...")
     try:
+        # It's generally best to use the tokenizer associated with the base model,
+        # unless the fine-tuning process specifically saved a modified tokenizer with the adapters.
         tokenizer = AutoTokenizer.from_pretrained(base_model_name, trust_remote_code=True)
         if tokenizer.pad_token is None:
-            # Match the setup in fine_tune.py if pad_token was added there
-            # If tokenizer was saved with fine-tuned model, it would have the pad token.
-            # For now, assuming we always use base tokenizer and fix pad_token if needed.
             print("INFER: Tokenizer missing pad_token. Setting pad_token = eos_token.")
             tokenizer.pad_token = tokenizer.eos_token
+        # Ensure padding side is consistent if it matters for your model/generation
         tokenizer.padding_side = "right" 
         print("INFER: Tokenizer loaded and configured.")
     except Exception as e:
@@ -111,16 +99,20 @@ TOKENIZER = None
 MODEL_LOAD_ERROR = None
 
 # --- !! CONFIGURATION FOR INFERENCE !! ---
-# Set to None to use the base m-a-p/ChatMusician model
-# Set to the path of your fine-tuned LoRA adapter checkpoint directory to use the fine-tuned model
-# Example: ADAPTER_CHECKPOINT_PATH = "./dummy_qlora_finetuned_output/final_checkpoint/"
-# ADAPTER_CHECKPOINT_PATH = "./continuoAI_finetuned_thesession_v1_sample/final_checkpoint/" 
-ADAPTER_CHECKPOINT_PATH = None # << UNCOMMENT THIS LINE TO TEST WITH BASE MODEL
+# Set ADAPTER_CHECKPOINT_PATH to the directory containing your 'adapter_model.bin' / 'adapter_model.safetensors'
+# and 'adapter_config.json'
+# ADAPTER_CHECKPOINT_PATH = "./continuoAI_finetuned_thesession_v1_sample/final_checkpoint/"
+# To test with ONLY the base model, uncomment the line below and comment out the one above:
+ADAPTER_CHECKPOINT_PATH = None 
 
 # If your LoRA adapters were trained on a quantized base model (QLoRA),
-# it's generally best to also load the base model quantized for inference with those adapters.
+# it's generally necessary to also load the base model quantized for inference with those adapters.
 USE_QUANTIZATION_FOR_BASE_INFERENCE = True if ADAPTER_CHECKPOINT_PATH else False
-# (If ADAPTER_CHECKPOINT_PATH is None, quantization for base is less critical unless VRAM is an issue)
+# If ADAPTER_CHECKPOINT_PATH is None (using base model), you can set USE_QUANTIZATION_FOR_BASE_INFERENCE
+# to True if you still want 4-bit inference for the base model to save VRAM, or False for full float16.
+# For base model only, let's default to float16 unless VRAM is an issue:
+if ADAPTER_CHECKPOINT_PATH is None:
+    USE_QUANTIZATION_FOR_BASE_INFERENCE = False # Change to True if you need to quantize base for VRAM
 
 print("inference_engine.py: Attempting to load global MODEL and TOKENIZER (with potential adapters)...")
 try:
@@ -132,9 +124,10 @@ try:
 except Exception as e:
     MODEL_LOAD_ERROR = str(e)
     print(f"inference_engine.py: CRITICAL ERROR during global model load: {MODEL_LOAD_ERROR}")
+    traceback.print_exc() # Also print traceback for global load errors
 
 def generate_music_continuation(prompt_abc: str,
-                                max_new_tokens=256,
+                                max_new_tokens=128, # Defaulting to shorter for quicker tests
                                 temperature=0.7,
                                 top_k=40,
                                 top_p=0.9,
@@ -161,7 +154,7 @@ def generate_music_continuation(prompt_abc: str,
             repetition_penalty=repetition_penalty,
             eos_token_id=TOKENIZER.eos_token_id,
             pad_token_id=pad_token_id,
-            min_new_tokens=20,
+            min_new_tokens=10, # Ensure at least some generation
             max_new_tokens=max_new_tokens,
         )
 
@@ -198,63 +191,51 @@ def generate_music_continuation(prompt_abc: str,
 if __name__ == "__main__":
     print("\n" + "="*30)
     print("Running inference_engine.py as main script for testing...")
-    print(f"Testing with adapters: {ADAPTER_CHECKPOINT_PATH}")
+    print(f"Testing with adapters from: {ADAPTER_CHECKPOINT_PATH if ADAPTER_CHECKPOINT_PATH else 'BASE MODEL ONLY'}")
+    print(f"Base model quantization for inference: {USE_QUANTIZATION_FOR_BASE_INFERENCE}")
     print("="*30 + "\n")
 
     if MODEL and TOKENIZER:
-        # --- Test Case 1: Chord Progression (Less relevant for evaluating completion-focused adapters) ---
-        # instruction1 = """Develop a musical piece using the given chord progression.
-        # 'Dm', 'C', 'Dm', 'Dm', 'C', 'Dm', 'C', 'Dm'"""
-        # prompt1 = f"Human: {instruction1}</s> Assistant: "
-        # print(f"\n--- Test 1: Chord Progression ---")
-        # print(f"Prompting with:\n{prompt1}")
-        # continuation1 = generate_music_continuation(prompt1, max_new_tokens=350)
-        # print("\nGenerated Music (Chord Progression):")
-        # print(continuation1)
-        # print("---------------------------------")
-
-        # --- Test Case 2: ABC Continuation (Focus on this for your fine-tuned model) ---
-        # Use a prompt similar to what was in your fine-tuning data
+        # --- Test Case 1: ABC Continuation (Focus on this for your fine-tuned model) ---
+        # Use a prompt that might have been similar in structure to your fine-tuning data
         abc_start_snippet_for_test = """X:1
-T:Test Completion Start
+T:Test Completion Start - G Major
 M:4/4
 L:1/8
 K:Gmaj
-G A B c | d2 e2""" # Shorter prompt to see what it does
+G A B c | d2 e2""" # Shorter prompt
         
-        instruction2 = f"Here is the beginning of a musical piece. Please continue it in a coherent style:\n{abc_start_snippet_for_test}"
-        # If your fine-tuning prompts were simpler, e.g., just "Human: [ABC_START]</s> Assistant: ", adjust here.
-        # Let's assume the fine-tuning prompt included the instruction text.
-        prompt2 = f"Human: {instruction2}</s> Assistant: "
+        instruction1 = f"Here is the beginning of a musical piece. Please continue it in a coherent style:\n{abc_start_snippet_for_test}"
+        prompt1 = f"Human: {instruction1}</s> Assistant: "
 
-        print(f"\n--- Test 2: ABC Continuation (with fine-tuned adapters if path set) ---")
-        print(f"Prompting with:\n{prompt2}")
-        continuation2 = generate_music_continuation(prompt2, max_new_tokens=128) # Generate a shorter continuation for quick test
+        print(f"\n--- Test 1: ABC Continuation (G Major) ---")
+        print(f"Prompting with:\n{prompt1}")
+        continuation1 = generate_music_continuation(prompt1, max_new_tokens=128) 
         print("\nGenerated Music (ABC Continuation):")
-        print(continuation2)
+        print(continuation1)
         print("--------------------------------")
         
-        # --- Test Case 3: Another ABC Continuation example ---
+        # --- Test Case 2: Another ABC Continuation example ---
         abc_start_snippet_for_test_2 = """X:1
-T:Another Test
+T:Another Test - D Major
 M:6/8
 L:1/8
 K:Dmaj
 A | dcd FGA | Bcd"""
-        instruction3 = f"Complete the following musical phrase:\n{abc_start_snippet_for_test_2}"
-        prompt3 = f"Human: {instruction3}</s> Assistant: "
-        print(f"\n--- Test 3: ABC Continuation 2 ---")
-        print(f"Prompting with:\n{prompt3}")
-        continuation3 = generate_music_continuation(prompt3, max_new_tokens=128)
+        instruction2 = f"Complete the following musical phrase:\n{abc_start_snippet_for_test_2}"
+        prompt2 = f"Human: {instruction2}</s> Assistant: "
+        print(f"\n--- Test 2: ABC Continuation (D Major) ---")
+        print(f"Prompting with:\n{prompt2}")
+        continuation2 = generate_music_continuation(prompt2, max_new_tokens=96) # Even shorter for variety
         print("\nGenerated Music (ABC Continuation 2):")
-        print(continuation3)
+        print(continuation2)
         print("--------------------------------")
-
 
     elif MODEL_LOAD_ERROR:
         print(f"Cannot run test: Model or Tokenizer failed to load. Error: {MODEL_LOAD_ERROR}")
     else:
-        print("Cannot run test: Model or Tokenizer not initialized for an unknown reason.")
+        # This case indicates an issue before MODEL_LOAD_ERROR was even set, likely during import of this script.
+        print("Cannot run test: Model or Tokenizer not initialized for an unknown reason (possibly import error in this script itself).")
 
     print("\n" + "="*30)
     print("inference_engine.py: End of main script execution.")
