@@ -1,8 +1,12 @@
 torch
-transformers
-accelerate
-gradio 
-datasets 
-# symusic # Keep commented if not actively used by UI yet
-# bitsandbytes # Keep commented for now, will add if decide to use quantization
-# peft # Keep commented for now, will add if decide to use LoRA
+transformers==4.36.2
+accelerate==0.25.0
+gradio
+datasets
+bitsandbytes==0.41.2.post2 # Assuming this is the one you have from the .whl
+peft==0.7.1
+tensorboard
+requests
+beautifulsoup4
+tf-keras
+# symusic

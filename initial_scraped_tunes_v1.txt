@@ -1,327 +1,327 @@
-X: 1
-T: Cooley's
-Z: Jeremy
-S: https://thesession.org/tunes/1#setting1
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 1
+T: Cooley's
+Z: Jeremy
+S: https://thesession.org/tunes/1#setting1
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|EBBA B2 EB|B2 AB dBAG|FDAD BDAD|FDAD dAFD|
 EBBA B2 EB|B2 AB defg|afec dBAF|DEFD E2:|
 |:gf|eB B2 efge|eB B2 gedB|A2 FA DAFA|A2 FA defg|
-eB B2 eBgB|eB B2 defg|afec dBAF|DEFD E2:|
+eB B2 eBgB|eB B2 defg|afec dBAF|DEFD E2:|
 
-X: 2
-T: Cooley's
-Z: donnchad
-S: https://thesession.org/tunes/1#setting12342
-R: reel
-M: 4/4
-L: 1/8
-K: Emin
+X: 2
+T: Cooley's
+Z: donnchad
+S: https://thesession.org/tunes/1#setting12342
+R: reel
+M: 4/4
+L: 1/8
+K: Emin
 |:F|CGGC G2 CG|G2 FG BGFE|(3DCB, FB, GB,FB,|DB,DF BFDB,|
 CGGC G2 CG|G2 FG Bcde|fdcd BGFB|B,CDF C3:|
 |:d|cG ~G2 cede|cG ~G2 ecBG|(3FGF DF B,FDF|GFDF Bcde|
-cG ~G2 cede|cG ~G2 Bcde|fdcd BGFB|B,CDF C3:|
+cG ~G2 cede|cG ~G2 Bcde|fdcd BGFB|B,CDF C3:|
 
-X: 3
-T: Cooley's
-Z: middlefaster
-S: https://thesession.org/tunes/1#setting12343
-R: reel
-M: 4/4
-L: 1/8
-K: Emin
+X: 3
+T: Cooley's
+Z: middlefaster
+S: https://thesession.org/tunes/1#setting12343
+R: reel
+M: 4/4
+L: 1/8
+K: Emin
 |:D2|EBBA B2 EB|B2 AB dBAG|FDAD BDAD|FDAD dAFD|
 EBBA B2 EB|B2 AB defg|afef dBAF|DEFD E2:|
 |:gf|eB ~B2 eBgB|eB ~B2 {a}gedB|A2 FA DFAB|BA FA defg|
-eB ~B2 eBgB|eB B2 defg|afef dBAF|DEFD E2:|
+eB ~B2 eBgB|eB B2 defg|afef dBAF|DEFD E2:|
 
-X: 4
-T: Cooley's
-Z: Edgar Bolton
-S: https://thesession.org/tunes/1#setting20796
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 4
+T: Cooley's
+Z: Edgar Bolton
+S: https://thesession.org/tunes/1#setting20796
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 D|:EBBA "slide"B3 B|B2 AB dBAD|(3FED AD BDAD|(3FED A=c BAFD|
 EBBA "slide" B3 B|B2 AB defg|afec dBAF|1 EGFD E3 D:|2 EGFD E3 d||
 |:eB (3BBB efgf|eB (3BBB fedB|(3ABA FB (3ABA FB|ADFA Bcdf|
 eB (3BBB efgf|eB (3BBB fedB|(3ABA FB dfec|dBAF EFGB:|
 |:eB (3BBB eBfB|eB (3BBB fedc|BE (3EEE BEdE|BE (3BBB BAFB|
-eB (3BBB eBfB|eB (3BBB fecA|d3 e fdec|dBAF EFGB:|
+eB (3BBB eBfB|eB (3BBB fecA|d3 e fdec|dBAF EFGB:|
 
-X: 5
-T: Cooley's
-Z: sebastian the m3g4p0p
-S: https://thesession.org/tunes/1#setting20960
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 5
+T: Cooley's
+Z: sebastian the m3g4p0p
+S: https://thesession.org/tunes/1#setting20960
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:eBBA ~B2B2|~B2AB dBAG|FDAD BDAD|EDFA BAFB|
 eBBA ~B2Bc|B2AB defA|~A2eA dBAF|1 DEFD ~E2E2:|2 DEFD ~e2e2||
 |:eB~B2 eBgB|eB~B2 gedB|A2FA DAFA|~A2FA Beed|
-e2~A2 eage|dBAB defA|~A2e2 dBAF|1 DEfd ~e2e2:|2 DEFD ~E2E2||
+e2~A2 eage|dBAB defA|~A2e2 dBAF|1 DEfd ~e2e2:|2 DEFD ~E2E2||
 
-X: 6
-T: Cooley's
-Z: Edgar Bolton
-S: https://thesession.org/tunes/1#setting21423
-R: reel
-M: 4/4
-L: 1/8
-K: Emin
+X: 6
+T: Cooley's
+Z: Edgar Bolton
+S: https://thesession.org/tunes/1#setting21423
+R: reel
+M: 4/4
+L: 1/8
+K: Emin
 A|EBBE B2 EB|~B2 AB dBAG|(3FED AD BDAD|FDFA dAFD|
 EBBE B2 EB|~B2 AB defg|afef dBAd|DEFA E3:|
 f|eB ~B2 egfg|eB ~B2 gedB|(3ABA FA DAFA|BAFA defg|
-eB ~B2 egfg|eB ~B2 defg|afef dBAd|DEFA E3:|
+eB ~B2 egfg|eB ~B2 defg|afef dBAd|DEFA E3:|
 
-X: 7
-T: Cooley's
-Z: Tate
-S: https://thesession.org/tunes/1#setting22061
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 7
+T: Cooley's
+Z: Tate
+S: https://thesession.org/tunes/1#setting22061
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 ED|"Em"EBBA B2 EB|"Em"B2 AB dBAG|"D"F/E/D AD BDAD|"D"F/E/D AD BAGF|
 "Em"EBBA B2 EB|"Em" B2 AB defg|"D" afec dBAF|"D"DEFD "Em"E3:|
 |:gf|"Em"eBB2 eBgf|"Em"eBB2 gedB|"D"A/A/A FA DAFA|"D"A/A/A FA defg|
-"Em"eBB2 eBgf|"Em"eBB2 defg|"D"afec dBAF|"D"DEFD "Em"E2:|
+"Em"eBB2 eBgf|"Em"eBB2 defg|"D"afec dBAF|"D"DEFD "Em"E2:|
 
-X: 8
-T: Cooley's
-Z: ceolachan
-S: https://thesession.org/tunes/1#setting23915
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 8
+T: Cooley's
+Z: ceolachan
+S: https://thesession.org/tunes/1#setting23915
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D|EBBA B2- BA|~B2 AB dBAG|FDAD BDAG|F/E/D FA dAFD|
 EB-BA B2 BA|B/c/B AB defg|afef dBAF|DEFD E3:|
 |:f|eB ~B2 eBfB|eB ~B2 gedB|A/B/A FA DAFA|~A2 FA defd|
-eB B/c/B eBgf|eB ~B2 defg|afef dBAF|DE F/E/D E3:|
+eB B/c/B eBgf|eB ~B2 defg|afef dBAF|DE F/E/D E3:|
 
-X: 9
-T: Cooley's
-Z: eamonn barr
-S: https://thesession.org/tunes/1#setting24552
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 9
+T: Cooley's
+Z: eamonn barr
+S: https://thesession.org/tunes/1#setting24552
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|EBBA B2 EB|B2 AB dBAG|FED AD BDAD|FEDAD BAGF|
 EBBA B2 EB|B2 AB defg|afec dBAF|DEFD E2:|
 |:gf|eB B2 efge|eB B2 gedB|A2 FA DAFA|A2 FA defg|
-eB B2 eBgF|eB B2 defg|afec dBAF|DEFD E2:|
+eB B2 eBgF|eB B2 defg|afec dBAF|DEFD E2:|
 
-X: 10
-T: Cooley's
-Z: JACKB
-S: https://thesession.org/tunes/1#setting25140
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 10
+T: Cooley's
+Z: JACKB
+S: https://thesession.org/tunes/1#setting25140
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|EBBA B2 EB|B2 AB dBAF|DF F2 A3B|AF F2 dBAF|
 EBBA B2 EB|B2 AB defg|afec dBAF|DEFD E2:|
 |:gf|eB B2 egfg|eB B2 gedB|A2 FA DAFA|A2 FA defg|
-eB B2 egfg|eB B2 defg|afec dBAF|DEFD E2:|
+eB B2 egfg|eB B2 defg|afec dBAF|DEFD E2:|
 
-X: 11
-T: Cooley's
-Z: litewave27
-S: https://thesession.org/tunes/1#setting29823
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 11
+T: Cooley's
+Z: litewave27
+S: https://thesession.org/tunes/1#setting29823
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:E ~B2 A B2 EB|~B2 AB dBAG|(3FED AD BDAD|(3FED FA BAFD|
 E ~B2 A B2 EB|~B2 AB defg|af (3gfe dBAF|DEFD E2 z2:|
 |:eB ~B2 eBgB|eB ~B2 gedB|~A2 FA DAFA|~A2 FA defg|
-eB ~B2 eBgB|eB ~B2 defg|af (3gfe dBAF|DEFD E2 z2:|
+eB ~B2 eBgB|eB ~B2 defg|af (3gfe dBAF|DEFD E2 z2:|
 
-X: 12
-T: Cooley's
-Z: Sergei Ejov
-S: https://thesession.org/tunes/1#setting31475
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 12
+T: Cooley's
+Z: Sergei Ejov
+S: https://thesession.org/tunes/1#setting31475
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|"Em"EBBA B2 EB|B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
 "Em"EBBA B2 EB|B2 AB defg|"D"afec dBAF|DEFD "Em"E2:|
 |:gf|"Em"eB B2 efge|eB B2 gedB|"D/H"A2 FA DAFA|A2 FA defg|
-"C"eB B2 eBgB|"Am"eB B2 defg|"D/H"afec dBAF|DEFD "Em"E2:|
+"C"eB B2 eBgB|"Am"eB B2 defg|"D/H"afec dBAF|DEFD "Em"E2:|
 
-X: 13
-T: Cooley's
-Z: GraefinZahl
-S: https://thesession.org/tunes/1#setting39518
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 13
+T: Cooley's
+Z: GraefinZahl
+S: https://thesession.org/tunes/1#setting39518
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 FD|:EBBA B2 EB|B2 AB dBAG|(3FED AD BDAD|FDFA dAFD|
 EBBA B2 EB|B2 AB defg|afge dBAF|1 DEFD E2 FD:|2 DEFD E gfg||
 |:eB (3BBB eBgB|eB (3BBB gedB|A2FA dAFB|ADFA Bcdf|
-eB (3BBB eBgB|edBc defg|afge dBAF|1 DEFD E gfg:|2 DEFD E2 z2||
+eB (3BBB eBgB|edBc defg|afge dBAF|1 DEFD E gfg:|2 DEFD E2 z2||
 
-X: 14
-T: Cooley's
-Z: Anonymous_Piper
-S: https://thesession.org/tunes/1#setting39604
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 14
+T: Cooley's
+Z: Anonymous_Piper
+S: https://thesession.org/tunes/1#setting39604
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|EB{c}BA B2 EB|~B2 AB dBAG|FDAD BDAD|FDAD dAFD|
 EBBA B2 EB|B2 AB defg|afe^c dBAF|DEFD E2:|
 |:gf|eB B2 efge|eB B2 gedB|A2 FA DAFA|A2 FA defg|
-eB B2 eBgB|eB B2 defg|afe^c dBAF|DEFD E2:|
+eB B2 eBgB|eB B2 defg|afe^c dBAF|DEFD E2:|
 
-X: 15
-T: Cooley's
-Z: Michael Eskin
-S: https://thesession.org/tunes/1#setting40038
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 15
+T: Cooley's
+Z: Michael Eskin
+S: https://thesession.org/tunes/1#setting40038
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:"E"EB"e"BA B2 "e"EB|B2 "e"AB dB"e"AG|"D"FD"d"AD BD"d"AD|FA"d"AA BA"B"GF|
 "E"EB"e"BA B2 "e"EB|B2 "e"AB de"e"fg|"D"af"d"ge dB"d"AF|1 DE"B"FD "E"(E2"e"E)D:|2 DE"B"FD "E"E2 "e"gf||
 |:"E"eB "e"B2 eB"e"gf|eB "e"B2 ge"e"dB|"D"A2 "d"FA DA"d"FA|A2 "d"FA de"B"fg|
-"E"eB "e"B2 eB"e"gf|eB "e"B2 de"e"fg|"D"af"d"ge dB"d"AF|1 DE"B"FD "E"E2"e"gf:|2 DE"B"FD "E"(E2"e"E)D||
+"E"eB "e"B2 eB"e"gf|eB "e"B2 de"e"fg|"D"af"d"ge dB"d"AF|1 DE"B"FD "E"E2"e"gf:|2 DE"B"FD "E"(E2"e"E)D||
 
-X: 16
-T: Cooley's
-Z: shanachie
-S: https://thesession.org/tunes/1#setting41887
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 16
+T: Cooley's
+Z: shanachie
+S: https://thesession.org/tunes/1#setting41887
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:EBBA [E2B2] EB|B2 AB dBAG|F/E/D AD BDAD|F/E/D AD BAGF|
 EBBA B2 EB|B2 AB defg|afge dBAF|1 DEFD E3D:|2 DEFD E2gf||
 |:eBB2 eBgf|eBB2 gedB|A2FA DAFA|A2FA defg|
-eBB2 egfd|eBB2 defg|afge dBAF|1 DEFD E2gf:|2 DEFD E3D||
+eBB2 egfd|eBB2 defg|afge dBAF|1 DEFD E2gf:|2 DEFD E3D||
 
-X: 17
-T: Cooley's
-Z: Blunty026
-S: https://thesession.org/tunes/1#setting44243
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 17
+T: Cooley's
+Z: Blunty026
+S: https://thesession.org/tunes/1#setting44243
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|"Em"EBBA B2 EB|B2 AB dBAG|"D"FDA2 B2A2|D2A2 BAGF|
 "Em"EBBA B2EB|B2 AB defg|"D"afec dBAF|DEFD "Em"E2:|
 |:gf|"Em"e2 B2 efge|e2 B2 dedB|"D/H"A2 FA2 AFA|A2 FA defg|
-"C"e2 B2 eBgB|"Am"e2 B2 defg|"D/H"afec dBAF|DEFD "Em"E2:|
+"C"e2 B2 eBgB|"Am"e2 B2 defg|"D/H"afec dBAF|DEFD "Em"E2:|
 
-X: 18
-T: Cooley's
-Z: Blunty026
-S: https://thesession.org/tunes/1#setting44659
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 18
+T: Cooley's
+Z: Blunty026
+S: https://thesession.org/tunes/1#setting44659
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 E,2-[E,2E]-E|GGF G2[EB]AB|cdB AGFD [DF]|D[DB]D ADFDA|DdA FD
 EBB|B B2 EB B2 ABd|efga fefd|BAFD EFDE-|E
 |:D|EBBA B2- BA|B2 AB dBAG|FDAD BDAG|F/E/D FA dAFD|
 EB-BA B2 BA|B/c/B AB defg|afef dBAF|DEFD E3:|
 |:f|eB B2 eBgB|eB B2 gedB|A/B/A FA DAFA|A2 FA defd|
-eB B/c/B eBgf|eB B2 defg|afef dBAF|DE F/E/D E3:|
+eB B/c/B eBgf|eB B2 defg|afef dBAF|DE F/E/D E3:|
 
-X: 19
-T: Cooley's
-Z: Madeleine Townley
-S: https://thesession.org/tunes/1#setting45226
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 19
+T: Cooley's
+Z: Madeleine Townley
+S: https://thesession.org/tunes/1#setting45226
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:{A}GF|EBBA B2 EB|B2 AB dBAG|F/E/D AD BDAD|F/E/D AD dAFD|
 EBBA B2 EB|B2 AB defg|afec dBAF|DE F/E/D E2:|
 |:gf|eB B2 eBgB|eB B2 gedB|A2 FA DAFA|BA FA defg|
-eB B2 egfg|eB B2 defg|afec dBAF|DE F/E/D E2:|
+eB B2 egfg|eB B2 defg|afec dBAF|DE F/E/D E2:|
 
-X: 20
-T: Cooley's
-Z: PhilPontoise
-S: https://thesession.org/tunes/1#setting46013
-R: reel
-M: 4/4
-L: 1/8
-K: Ddor
+X: 20
+T: Cooley's
+Z: PhilPontoise
+S: https://thesession.org/tunes/1#setting46013
+R: reel
+M: 4/4
+L: 1/8
+K: Ddor
 |:DAAG A2 DA|A2 GA cAGF|ECGC ACGC|ECEG cGEC|
 DAAG A2 DA|A2 GA cdef|gede cAGE|1 :CDEC D2 A,C:|2 CDEC D2 fe||
 |:dA ~A2 dAfA|dA ~A2 fdcA|G2 EG CGEG|AGEG cdef|
-dA ~A2 dAfA|dA A2 cdef|gede cAGE|1 CDEC D2 fe:|2 CDEC D2 A,C||
+dA ~A2 dAfA|dA A2 cdef|gede cAGE|1 CDEC D2 fe:|2 CDEC D2 A,C||
 
-X: 21
-T: Cooley's
-Z: lusoceltibero
-S: https://thesession.org/tunes/1#setting49708
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 21
+T: Cooley's
+Z: lusoceltibero
+S: https://thesession.org/tunes/1#setting49708
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:ED|"Em"EBBA B2 EB|"Em"B2 AB dBAG|"D"F/E/D AD BDAD|"D"F/E/D AD BAGF|
 "C"EBBA B2 EB|"C" B2 AB defg|"C" afec dBAF|"C"DEFD E2 "D":|
 |:gf|"C"eB B/B/B eBgB|"C"eB B/B/B gedB|"D"A2 FA DAFA|"D"A2 FA defg|
-"Em"eB B/B/B eBgf|"Em"eB B/B/B defg|"D"afec dBAF|"D"DEFD E2:|
+"Em"eB B/B/B eBgf|"Em"eB B/B/B defg|"D"afec dBAF|"D"DEFD E2:|
 
-X: 22
-T: Cooley's
-Z: SamiC
-S: https://thesession.org/tunes/1#setting50862
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 22
+T: Cooley's
+Z: SamiC
+S: https://thesession.org/tunes/1#setting50862
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:EBBA B2EB|~B2AB dBAG|(3FED AD BDAD|FDFA dAFD|
 EBBA B2EB|~B2AB defg|afef dBAF|1 DEFD E2ED:|2 DEFD E2gf||
 |:eB~B2 eBgB|eB~B2 gedB|A2FA DAFA|~A2FA defg|
-eB~B2 eBgB|eB~B2 defg|afef dBAF|1 DEFD E2gf:|2 DEFD E2ED||
+eB~B2 eBgB|eB~B2 defg|afef dBAF|1 DEFD E2gf:|2 DEFD E2ED||
 
-X: 23
-T: Cooley's
-Z: Helen Snibson
-S: https://thesession.org/tunes/1#setting51222
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 23
+T: Cooley's
+Z: Helen Snibson
+S: https://thesession.org/tunes/1#setting51222
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:D2|"Em"EBBA B2 EB|B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
 "Em"EBBA B2 EB|B2 AB defg|"D"afec dBAF|DEFD "Em"E2:|
 |:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
-"Em"eB B2 eBgB|"Em"eB B2 defg|"D"afec dBAF|DEFD "Em"E2:|
+"Em"eB B2 eBgB|"Em"eB B2 defg|"D"afec dBAF|DEFD "Em"E2:|
 
-X: 24
-T: Cooley's
-Z: Zara
-S: https://thesession.org/tunes/1#setting52232
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 24
+T: Cooley's
+Z: Zara
+S: https://thesession.org/tunes/1#setting52232
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:EBBA B2 EB|B2 AB dBAG|FDAD BDAD|FDFA dAFD|
 EBBA B2 EB|B2 AB defg|afec dBAF|DEFD E2:|
 |:gf|eB B2 efgf|eB B2 gedB|A2 FA DAFA|A2 FA defd|
-eB B2 efgf|eBB2 defg|afec dBAF|DEFD E2:|
+eB B2 efgf|eBB2 defg|afec dBAF|DEFD E2:|
 
-X: 25
-T: Cooley's
-Z: Stuart Morison
-S: https://thesession.org/tunes/1#setting53701
-R: reel
-M: 4/4
-L: 1/8
-K: Edor
+X: 25
+T: Cooley's
+Z: Stuart Morison
+S: https://thesession.org/tunes/1#setting53701
+R: reel
+M: 4/4
+L: 1/8
+K: Edor
 |:GF|EBBA B2 EB|~B2 AB dBAG|F/E/D AD BDAD|F/E/D AD BAGF|
 EBBA B2 EB|~B2 AB defg|afef dBAF|DE F/E/D E2:|
 |:gf|eB B/B/B eBgB|eB B/B/B gedB|A/B/A FA DAFA|ABde fdgf|
@@ -329,79 +329,79 @@ eB B/B/B eBgB|eB B/B/B defg|afef dBAF|DE F/E/D E2:|
 
 %-------------------- TUNE SEPARATOR --------------------%
 
-X: 1
-T: Bonaparte Crossing The Rhine
-Z: Jeremy
-S: https://thesession.org/tunes/7#setting7
-R: march
-M: 4/4
-L: 1/8
-K: Ador
+X: 1
+T: Bonaparte Crossing The Rhine
+Z: Jeremy
+S: https://thesession.org/tunes/7#setting7
+R: march
+M: 4/4
+L: 1/8
+K: Ador
 |:EG|A2 AB AGE2|cdec d2 eg|aged cded|cAGE G2 cB|
 A2 AB AGE2|cdec d2 eg|aged cAGE|A2 A2 A2:|
 |:eg|aged cdeg|agec d2 eg|aged cded|cAGE G2 EG|
-A2 AB AGEG|cdec d2 eg|aged cABG|A2 (3cBG A2:|
+A2 AB AGEG|cdec d2 eg|aged cABG|A2 (3cBG A2:|
 
-X: 2
-T: Bonaparte Crossing The Rhine
-Z: davarm
-S: https://thesession.org/tunes/7#setting5915
-R: march
-M: 4/4
-L: 1/8
-K: Dmix
+X: 2
+T: Bonaparte Crossing The Rhine
+Z: davarm
+S: https://thesession.org/tunes/7#setting5915
+R: march
+M: 4/4
+L: 1/8
+K: Dmix
 A|D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGED|C>C CD C2 (3AGE|
 D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGEC|D4 D2 AB|
 d>c AG F>G AB|c>d cA c2 (3ABc|d>c AG AGED|C>C CD C2 (3AGE|
-D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGEC|D4 D4||
+D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGEC|D4 D4||
 
-X: 3
-T: Bonaparte Crossing The Rhine
-Z: ceolachan
-S: https://thesession.org/tunes/7#setting12362
-R: march
-M: 4/4
-L: 1/8
-K: Dmix
+X: 3
+T: Bonaparte Crossing The Rhine
+Z: ceolachan
+S: https://thesession.org/tunes/7#setting12362
+R: march
+M: 4/4
+L: 1/8
+K: Dmix
 A2|D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGED|C>C CD C2 (3AGE|
 D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGEC|D4 D2||
 AB|d>c AG F>G AB|c>d cA c2 (3ABc|d>c AG AGED|C>C CD C2 (3AGE|
-D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGEC|D4 D2||
+D>D DE DCCD|F>G AF G2 (3ABc|d>c AG AGEC|D4 D2||
 
-X: 4
-T: Bonaparte Crossing The Rhine
-Z: ceolachan
-S: https://thesession.org/tunes/7#setting12363
-R: march
-M: 4/4
-L: 1/8
-K: Ador
+X: 4
+T: Bonaparte Crossing The Rhine
+Z: ceolachan
+S: https://thesession.org/tunes/7#setting12363
+R: march
+M: 4/4
+L: 1/8
+K: Ador
 |:E>G|A2 A>B A>GE<G|c>d (3edc d2 e>g|a>ge>d (3cBA B>A|G>AG<E G2 c>B|
 A2- AB AG (3EFG|c2 e>c (3ddd (3efg|a>ge<d c>AG<E|A2 A>^G A2:|
 |:e<g|a>g (3eed c>de>f|g>ag<e g2 c'>b|a>ge>d c2 (3cBA|G2- G>E G2 (3EFG|
-(3AAA A>B A>G (GGG|c<de>c d2 (3efg|a2 (3ged c2 B<G|(3AAA A<^G A2:|
+(3AAA A>B A>G (GGG|c<de>c d2 (3efg|a2 (3ged c2 B<G|(3AAA A<^G A2:|
 
-X: 5
-T: Bonaparte Crossing The Rhine
-Z: Joe CSS
-S: https://thesession.org/tunes/7#setting11103
-R: march
-M: 4/4
-L: 1/8
-K: Amix
+X: 5
+T: Bonaparte Crossing The Rhine
+Z: Joe CSS
+S: https://thesession.org/tunes/7#setting11103
+R: march
+M: 4/4
+L: 1/8
+K: Amix
 A>G AB|AG GA|c>d ec|d2 ef/g/|a>g ed|ed BA|G>A BA|G2 ed/B/|
 A>G AB|AG GA|c>d ec|d2 ef/g/|a>g ed|ed BA/G/|A3 B|1 A2 ed/B/:|2 A2 ef/g/||
 a>g ed|ed ef|g>a ge|g2 ef/g/|a>g ed|ed BA|G>A BA|G2 ed/B/|
-A>G AB|AG GA|c>d ec|d2 ef/g/|a>g ed|ed BA/G/|A3 B|1 A2 ef/g/:|2 A2 ed/B/||
+A>G AB|AG GA|c>d ec|d2 ef/g/|a>g ed|ed BA/G/|A3 B|1 A2 ef/g/:|2 A2 ed/B/||
 
-X: 6
-T: Bonaparte Crossing The Rhine
-Z: ceolachan
-S: https://thesession.org/tunes/7#setting12364
-R: march
-M: 4/4
-L: 1/8
-K: Ador
+X: 6
+T: Bonaparte Crossing The Rhine
+Z: ceolachan
+S: https://thesession.org/tunes/7#setting12364
+R: march
+M: 4/4
+L: 1/8
+K: Ador
 |:E>G|A2 A>B A>GE>D|c>de>c d2 e>g|a>ge>d c>AG>E|G>Ec>E G2 E>G|
 A2 A>B A>GE>D|c>de>c d2 e>g|a>ge>d c>AG>E|A2 A>A A2:|
 |:eg|a>ge>d c>de>f|g>ea>f g2 e>g|a>ge>d c>AG>E|G>Ec>E G2 E>G|
