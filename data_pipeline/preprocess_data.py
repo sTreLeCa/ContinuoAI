@@ -1,40 +1,45 @@
 import json
-import re # For splitting by X:
+import re
 import traceback
 
-print("preprocess_data.py: Loaded.")
+print("preprocess_data.py: V2 Loaded.")
+
+def clean_music_line(line):
+    """Removes comments and other non-music elements from a line of ABC."""
+    line = line.split('%')[0]
+    line = re.sub(r'\[I:[^\]]*\]', '', line)
+    line = re.sub(r'^w:.*', '', line, flags=re.MULTILINE)
+    return line.strip()
 
 def split_abc_tune(single_setting_abc, split_point_bars=4, min_completion_bars=4):
     """
-    Takes a SINGLE ABC tune/setting and splits it into a prompt/completion pair.
-    This version has stricter checks.
+    V2 of the splitting function. More robust cleaning and header detection.
     """
     lines = single_setting_abc.strip().split('\n')
     header_lines = []
     music_lines = []
     
-    # Separate header (lines before K:) and music (lines from K: onwards)
-    try:
-        k_index = -1
-        for i, line in enumerate(lines):
-            if line.strip().startswith("K:"):
-                k_index = i
-                break
-        if k_index == -1: return None, None # No key signature, invalid ABC for our purpose
+    KNOWN_HEADERS = ('X:', 'T:', 'C:', 'S:', 'Z:', 'O:', 'A:', 'R:', 'M:', 'L:', 'Q:', 'P:', 'K:', 'N:', 'G:', 'H:', 'V:')
 
-        header_lines = lines[:k_index+1]
-        music_lines = lines[k_index+1:]
-    except Exception:
+    for line in lines:
+        cleaned_line = clean_music_line(line)
+        if not cleaned_line:
+            continue
+
+        if cleaned_line.startswith(KNOWN_HEADERS):
+            header_lines.append(cleaned_line)
+        else:
+            music_lines.append(cleaned_line)
+            
+    if not any(line.startswith("K:") for line in header_lines) or not music_lines:
         return None, None
-    
-    if not music_lines: return None, None
 
     full_music_notation = " ".join(music_lines)
     bars = [b.strip() for b in ' '.join(full_music_notation.split()).split('|')]
-    bars = [b for b in bars if b and not b.isspace()] # Filter out empty/whitespace bars
+    bars = [b for b in bars if b and not b.isspace()]
 
     if len(bars) < split_point_bars + min_completion_bars:
-        return None, None # Tune is too short
+        return None, None
 
     prompt_bars = bars[:split_point_bars]
     completion_bars = bars[split_point_bars:]
@@ -44,8 +49,7 @@ def split_abc_tune(single_setting_abc, split_point_bars=4, min_completion_bars=4
     prompt_abc_full = "\n".join(header_lines) + "\n" + " | ".join(prompt_bars) + " |"
     completion_text = " | ".join(completion_bars).strip()
     
-    # Final check: if completion is just an end marker, discard it
-    if completion_text in (':|', '||', '|]'): return None, None
+    if completion_text.strip() in (':|', '||', '|]'): return None, None
 
     return prompt_abc_full, completion_text
 
@@ -54,33 +58,32 @@ def create_finetuning_record(prompt_abc, completion_abc, instruction="Please con
     prompt_text = f"Human: {instruction}\n{prompt_abc}</s> Assistant: "
     return {"prompt": prompt_text, "completion": completion_abc}
 
-def process_scraped_data(input_filename, output_jsonl_filename, max_examples=10000):
-    """Reads scraped ABC data, splits multi-setting blocks, and creates a JSONL dataset."""
+def process_scraped_data(input_filename, output_jsonl_filename, max_examples=5000):
+    """V2: Reads scraped ABC data, splits multi-setting blocks, and creates a JSONL dataset."""
     fetched_block_separator = "%-------------------- TUNE SEPARATOR --------------------%"
     records_created = 0
 
     try:
+        print(f"Reading from input file: {input_filename}")
         with open(input_filename, 'r', encoding='utf-8') as infile:
             full_content = infile.read()
         
-        # Split into blocks from different URLs
         fetched_blocks = full_content.split(fetched_block_separator)
-        print(f"Found {len(fetched_blocks)} fetched blocks in {input_filename}.")
+        print(f"Found {len(fetched_blocks)} fetched blocks.")
 
         all_individual_settings = []
         for tune_block_raw in fetched_blocks:
             if not tune_block_raw.strip(): continue
-            # Split each block by the X: header to get individual settings/versions
-            # The regex splits on a newline that is FOLLOWED BY "X:", keeping the "X:"
-            settings_in_block = re.split(r'\n(?=X:)', tune_block_raw.strip())
+            settings_in_block = re.split(r'\n\s*\n(?=X:)', tune_block_raw.strip())
             all_individual_settings.extend(settings_in_block)
 
         print(f"Total individual tune settings found: {len(all_individual_settings)}")
         
+        print(f"Processing settings and writing to: {output_jsonl_filename}")
         with open(output_jsonl_filename, 'w', encoding='utf-8') as outfile:
             for setting_abc in all_individual_settings:
                 if records_created >= max_examples:
-                    print(f"Reached max_examples limit of {max_examples}.")
+                    print(f"\nReached max_examples limit of {max_examples}.")
                     break
                 
                 prompt_part, completion_part = split_abc_tune(setting_abc)
@@ -90,11 +93,11 @@ def process_scraped_data(input_filename, output_jsonl_filename, max_examples=100
                     if record:
                         outfile.write(json.dumps(record) + '\n')
                         records_created += 1
-                        if records_created % 100 == 0:
+                        if records_created % 500 == 0:
                             print(f"Progress: {records_created} records created...")
             
     except FileNotFoundError:
-        print(f"Error: Input file {input_filename} not found.")
+        print(f"Error: Input file {input_filename} not found. Please run the scraper first.")
     except Exception as e:
         print(f"An error occurred during preprocessing: {e}")
         traceback.print_exc()
@@ -102,8 +105,9 @@ def process_scraped_data(input_filename, output_jsonl_filename, max_examples=100
     print(f"\nFinished preprocessing. Created {records_created} records in {output_jsonl_filename}.")
 
 if __name__ == "__main__":
-    print("Running preprocess_data.py for scaled data acquisition...")
+    print("Running preprocess_data.py (V2) on new large scraped file...")
     process_scraped_data(
-        input_filename="initial_scraped_tunes_large_v1.txt",
-        output_jsonl_filename="finetuning_dataset_large_v1.jsonl"
+        input_filename="initial_scraped_tunes_v2_diverse.txt",
+        output_jsonl_filename="finetuning_dataset_v2_refined.jsonl",
+        max_examples=5000  # You can adjust this limit
     )
