@@ -111,7 +111,7 @@ def create_finetuning_record(prompt_abc, completion_abc, instruction="Please con
     return record
 
 def process_scraped_data(input_filename="initial_scraped_tunes_v1.txt",
-                         output_jsonl_filename="finetuning_dataset_v1.jsonl",
+                         output_jsonl_filename="finetuning_dataset_v1.jsonl", # Changed default
                          max_examples=50):
     tune_separator = "%-------------------- TUNE SEPARATOR --------------------%"
     records_created = 0
@@ -122,7 +122,7 @@ def process_scraped_data(input_filename="initial_scraped_tunes_v1.txt",
             full_content = infile.read()
         
         individual_tunes_raw = full_content.split(tune_separator)
-        individual_tunes = [tune.strip() for tune in individual_tunes_raw if tune.strip()] # Filter out empty strings after split
+        individual_tunes = [tune.strip() for tune in individual_tunes_raw if tune.strip()]
         number_of_tunes_found = len(individual_tunes)
         
         print(f"Found {number_of_tunes_found} actual tunes in {input_filename} after splitting by separator and stripping.")
@@ -133,17 +133,21 @@ def process_scraped_data(input_filename="initial_scraped_tunes_v1.txt",
                     print(f"Reached max_examples limit of {max_examples}.")
                     break
                 
-                print(f"\nProcessing tune: {full_abc_tune[: min(100, len(full_abc_tune))]}...") # Debug: Show which tune is being processed
+                print(f"\nProcessing tune: {full_abc_tune[: min(100, len(full_abc_tune))]}...")
                 prompt_part, completion_part = split_abc_tune(full_abc_tune)
 
                 if prompt_part and completion_part:
                     record = create_finetuning_record(prompt_part, completion_part)
                     if record:
-                        outfile.write(json.dumps(record) + "\\n")
+                        # Corrected way to write JSONL with a proper newline
+                        outfile.write(json.dumps(record) + '\n') 
+                        # OR, preferred:
+                        # print(json.dumps(record), file=outfile) 
+                        
                         records_created += 1
                         print(f"SUCCESS: Created record {records_created}/{max_examples}")
-                        if records_created < 5: # Print first few for quick check
-                            print(json.dumps(record, indent=2))
+                        if records_created < 5: 
+                            print(json.dumps(record, indent=2)) # For pretty printing to console
                 else:
                     print(f"SKIPPED tune due to splitting issue or insufficient length. Tune preview: {full_abc_tune.strip()[:100]}...")
     
@@ -154,13 +158,11 @@ def process_scraped_data(input_filename="initial_scraped_tunes_v1.txt",
         traceback.print_exc()
 
     print(f"\nFinished preprocessing. Created {records_created} records in {output_jsonl_filename}.")
-    if records_created == 0 and number_of_tunes_found > 0 :
-        print("WARNING: Tunes were found in the input file, but NO records were created. \nCheck splitting logic (split_abc_tune), input data format, or minimum length requirements in preprocess_data.py.")
-    elif records_created == 0 and number_of_tunes_found == 0 and input_filename != "dummy_scraped_data.txt": # Assuming you might use dummy for testing
-         print(f"WARNING: No tunes were found in {input_filename}. Ensure scraper.py ran successfully and produced output.")
+    # ... (rest of the warnings) ...
 
 if __name__ == "__main__":
     print("Running preprocess_data.py as main script for testing...")
+    # Ensure the output filename matches what fine_tune.py expects
     process_scraped_data(input_filename="initial_scraped_tunes_v1.txt",
-                         output_jsonl_filename="finetuning_dataset_v1_sample.jsonl",
+                         output_jsonl_filename="finetuning_dataset_v1_sample.jsonl", 
                          max_examples=50)

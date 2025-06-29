@@ -1,9 +1,12 @@
 torch
-transformers
-accelerate
+transformers==4.36.2
+accelerate==0.25.0
 gradio
 datasets
-bitsandbytes
-peft
-tensorboard 
+bitsandbytes==0.41.2.post2 # Assuming this is the one you have from the .whl
+peft==0.7.1
+tensorboard
+requests
+beautifulsoup4
+tf-keras
 # symusic
