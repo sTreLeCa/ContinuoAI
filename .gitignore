@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+*.pyo
+*.pyd
 
 # C extensions
 *.so
@@ -132,6 +135,7 @@ cython_debug/
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+.idea/
 
 # Sublime Text
 *.sublime-project
@@ -149,8 +153,11 @@ cython_debug/
 
 # Model checkpoints and fine-tuning outputs
 # (These can be very large and shouldn't be in Git)
-dummy_qlora_finetuned_output/
 continuoAI_finetuned_thesession_v1_sample/
+/dummy_qlora_finetuned_output/
+/continuoAI_finetuned_large_v1/
+/continuoAI_finetuned_large_v1_fix_attempt/
+/continuoAI_finetuned_large_v1_fix2/
 *.pt
 *.pth
 *.safetensors 
@@ -176,6 +183,7 @@ adapter_config.json # Often small, but usually part of the adapter checkpoint
 # Log files
 *.log
 logs/
+/runs/
 
 # Tensorboard logs
 runs/
@@ -184,6 +192,7 @@ tensorboard_logs/
 
 # Gradio cache (already have .gradio/, but being explicit doesn't hurt)
 .gradio_cache/
+.gradio/
 
 # Specific temporary files you might create
 temp_output/
@@ -191,3 +200,22 @@ temp_output/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Dummy data files used only for testing script structure
+dummy_music_data.jsonl
+
+# Audio/MIDI output files
+*.mid
+*.midi
+*.wav
+*.mp3
+#  Datasets - It's good practice to ignore the generated data files.
+# The scripts to *create* them are in Git, but not the large output files themselves.
+# You committed the initial small samples, which is okay, but for larger ones, ignore them.
+initial_scraped_tunes_large_v1.txt
+finetuning_dataset_large_v1.jsonl
+
+# Generic pattern for any other output directories
+/fine_tuned_*/
+/output/
+/checkpoint*/
