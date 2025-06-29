@@ -3,7 +3,7 @@ transformers==4.36.2
 accelerate==0.25.0
 gradio
 datasets
-bitsandbytes==0.41.2.post2 # Assuming this is the one you have from the .whl
+# bitsandbytes==0.41.2.post2 # Comment out for now
 peft==0.7.1
 tensorboard
 requests
