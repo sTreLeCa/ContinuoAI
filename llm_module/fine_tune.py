@@ -90,14 +90,19 @@ def load_and_prepare_model_and_tokenizer(model_name_or_path="m-a-p/ChatMusician"
 
     return model, tokenizer
 
-def load_and_prepare_dataset(tokenizer, dataset_path: str, max_length=1024):
+def load_and_prepare_dataset(tokenizer, dataset_path: str, max_length=1024, num_samples=None):
     print(f"FN: Loading dataset from {dataset_path}...")
     
     try:
         dataset = load_dataset("json", data_files=dataset_path, split="train")
         dataset = dataset.shuffle(seed=42)
-        dataset = dataset.select(range(10))
-        print(f"FN: Dataset loaded and shuffled. Examples: {len(dataset)}")
+        
+        # Apply sample limit if specified
+        if num_samples is not None:
+            dataset = dataset.select(range(min(num_samples, len(dataset))))
+            print(f"FN: Dataset loaded and shuffled. Using {len(dataset)} samples (limited from {num_samples} requested).")
+        else:
+            print(f"FN: Dataset loaded and shuffled. Using all {len(dataset)} samples.")
     except Exception as e:
         print(f"FN: ERROR loading dataset - {e}")
         raise
@@ -173,19 +178,20 @@ def main_fine_tune(
     model_name_or_path="m-a-p/ChatMusician",
     dataset_path="finetuning_dataset_large_v1.jsonl",
     output_dir="./continuoAI_finetuned_large_v1",
-    epochs=3,
+    num_train_epochs=3,
     batch_size=1,
     gradient_accumulation_steps=8,
     learning_rate=2e-4,
     max_seq_length=1024,
     use_quantization_for_training=True,
-    use_lora=True
+    use_lora=True,
+    num_samples_for_training=None
 ):
     print(f"FN: Starting fine-tuning process...")
     print(f"FN: Model: {model_name_or_path}")
     print(f"FN: Dataset: {dataset_path}")
     print(f"FN: Output: {output_dir}")
-    print(f"FN: Epochs: {epochs}, Batch size: {batch_size}")
+    print(f"FN: Epochs: {num_train_epochs}, Batch size: {batch_size}")
     print(f"FN: Learning rate: {learning_rate}")
     print(f"FN: Max sequence length: {max_seq_length}")
     print(f"FN: Quantization: {use_quantization_for_training}")
@@ -222,7 +228,12 @@ def main_fine_tune(
             return
 
         # Load and prepare dataset
-        train_dataset = load_and_prepare_dataset(tokenizer, dataset_path, max_length=max_seq_length)
+        train_dataset = load_and_prepare_dataset(
+            tokenizer, 
+            dataset_path, 
+            max_length=max_seq_length,
+            num_samples=num_samples_for_training
+        )
         
         # Create data collator
         data_collator = DataCollatorForLanguageModeling(
@@ -234,25 +245,24 @@ def main_fine_tune(
         # Training arguments with safer settings
         training_args = TrainingArguments(
             output_dir=output_dir,
-            num_train_epochs=epochs,
+            num_train_epochs=num_train_epochs,
             per_device_train_batch_size=batch_size,
             gradient_accumulation_steps=gradient_accumulation_steps,
             learning_rate=learning_rate,
             weight_decay=0.01,
             logging_strategy="steps",
-            logging_steps=25,
+            logging_steps=50,
             save_strategy="epoch",
-            save_steps=500,
             evaluation_strategy="no",
-            fp16=False,  # Disable FP16 to avoid precision issues
-            bf16=False,  # Disable BF16 as well for stability
+            fp16=False,
+            bf16=False,
             gradient_checkpointing=True,
             optim="paged_adamw_8bit" if use_quantization_for_training else "adamw_torch",
-            report_to=None,  # Disable reporting to avoid issues
-            dataloader_drop_last=True,  # Drop incomplete batches
-            dataloader_num_workers=0,  # Use main process only
+            report_to="tensorboard",
+            dataloader_drop_last=True,
+            dataloader_num_workers=0,
             remove_unused_columns=False,
-            max_grad_norm=1.0,  # Gradient clipping
+            max_grad_norm=1.0,
         )
 
         # Create trainer
@@ -286,7 +296,11 @@ if __name__ == '__main__':
     print("="*30 + "\n")
     
     try:
-        main_fine_tune()
+        main_fine_tune(
+            num_samples_for_training=100,
+            num_train_epochs=1,
+            output_dir="./continuoAI_finetuned_v2_500_samples"
+        )
     except Exception as e:
         print(f"FN: FATAL ERROR - {e}")
         traceback.print_exc()
