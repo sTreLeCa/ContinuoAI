@@ -219,3 +219,7 @@ finetuning_dataset_large_v1.jsonl
 /fine_tuned_*/
 /output/
 /checkpoint*/
+
+# In .gitignore
+*.jsonl
+*.txt

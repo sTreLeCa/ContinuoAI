@@ -47,27 +47,17 @@ def load_model_for_inference(
         raise
 
     model_to_use = base_model
-    if adapter_path and os.path.isdir(adapter_path): # Check if adapter_path is a valid directory
+    if adapter_path and os.path.isdir(adapter_path): 
         print(f"INFER: Attempting to load LoRA adapters from {adapter_path}...")
         try:
-            # When loading a PEFT model, the base model should ideally not be in .eval() mode yet.
-            # PeftModel.from_pretrained will handle setting the correct mode.
-            # If base_model was quantized, PEFT handles it.
             model_to_use = PeftModel.from_pretrained(base_model, adapter_path)
             print("INFER: LoRA adapters loaded successfully onto base model.")
-            
-            # Optional: Merge adapters for potentially faster inference.
-            # This replaces the LoRA layers with their merged equivalents.
-            # print("INFER: Merging LoRA adapters into the base model for optimized inference...")
-            # model_to_use = model_to_use.merge_and_unload()
-            # print("INFER: Adapters merged and PEFT model unloaded.")
 
         except Exception as e:
             print(f"INFER: ERROR loading LoRA adapters from {adapter_path}: {e}")
             print("INFER: Will proceed with the base model only.")
             traceback.print_exc()
-            # model_to_use remains base_model
-    elif adapter_path: # Path provided but does not exist or is not a directory
+    elif adapter_path: 
         print(f"INFER: WARNING - Adapter path '{adapter_path}' provided but not found or not a directory. Using base model.")
     else:
         print("INFER: No adapter path provided, using base model.")
@@ -77,13 +67,10 @@ def load_model_for_inference(
 
     print(f"INFER: Attempting to load tokenizer for {base_model_name}...")
     try:
-        # It's generally best to use the tokenizer associated with the base model,
-        # unless the fine-tuning process specifically saved a modified tokenizer with the adapters.
         tokenizer = AutoTokenizer.from_pretrained(base_model_name, trust_remote_code=True)
         if tokenizer.pad_token is None:
             print("INFER: Tokenizer missing pad_token. Setting pad_token = eos_token.")
             tokenizer.pad_token = tokenizer.eos_token
-        # Ensure padding side is consistent if it matters for your model/generation
         tokenizer.padding_side = "right" 
         print("INFER: Tokenizer loaded and configured.")
     except Exception as e:
@@ -98,21 +85,13 @@ MODEL = None
 TOKENIZER = None
 MODEL_LOAD_ERROR = None
 
-# --- !! CONFIGURATION FOR INFERENCE !! ---
-# Set ADAPTER_CHECKPOINT_PATH to the directory containing your 'adapter_model.bin' / 'adapter_model.safetensors'
-# and 'adapter_config.json'
-# ADAPTER_CHECKPOINT_PATH = "./continuoAI_finetuned_thesession_v1_sample/final_checkpoint/"
-# To test with ONLY the base model, uncomment the line below and comment out the one above:
 ADAPTER_CHECKPOINT_PATH = None 
 
-# If your LoRA adapters were trained on a quantized base model (QLoRA),
-# it's generally necessary to also load the base model quantized for inference with those adapters.
+
 USE_QUANTIZATION_FOR_BASE_INFERENCE = True if ADAPTER_CHECKPOINT_PATH else False
-# If ADAPTER_CHECKPOINT_PATH is None (using base model), you can set USE_QUANTIZATION_FOR_BASE_INFERENCE
-# to True if you still want 4-bit inference for the base model to save VRAM, or False for full float16.
-# For base model only, let's default to float16 unless VRAM is an issue:
+
 if ADAPTER_CHECKPOINT_PATH is None:
-    USE_QUANTIZATION_FOR_BASE_INFERENCE = False # Change to True if you need to quantize base for VRAM
+    USE_QUANTIZATION_FOR_BASE_INFERENCE = False
 
 print("inference_engine.py: Attempting to load global MODEL and TOKENIZER (with potential adapters)...")
 try:
